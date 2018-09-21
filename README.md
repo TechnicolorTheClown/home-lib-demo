@@ -10,4 +10,5 @@ http://element-cn.eleme.io/#/zh-CN/component/card
 
 ### D2 Admin框架
 GitHub地址：https://github.com/d2-projects/d2-admin
+
 预览地址：https://d2-projects.github.io/d2-admin/#/demo/element/others-card
