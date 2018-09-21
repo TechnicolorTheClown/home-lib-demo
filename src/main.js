@@ -24,6 +24,7 @@ import menuHeader from '@/menu/header'
 import menuAside from '@/menu/aside'
 import { frameInRoutes } from '@/router/routes'
 
+
 Vue.use(ElementUI);
 
 // 核心插件
