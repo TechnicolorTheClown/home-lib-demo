@@ -1,20 +1,33 @@
 <template>
     <d2-container>
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span>卡片名称</span>
-                <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-            </div>
-            <div v-for="o in 4" :key="o" class="text item">
-                {{'列表内容 ' + o }}
-            </div>
-        </el-card>
+        <el-row :gutter="12">
+            <el-col  v-for="tag in tags" :key="tag.name"  closable :type="tag.type" :span="6" style="margin-top: 10px;">
+                <el-card shadow="hover">
+                    <el-button style="float: right; padding: 3px 0" type="text">删除</el-button> <el-button style="float: right; padding: 3px 0" type="text">编辑&nbsp;</el-button>
+                    <img :src="tag.imgsrc">
+                    {{tag.name}}
+                </el-card>
+            </el-col>
+        </el-row>
     </d2-container>
+
 </template>
 
 <script>
+
     export default {
-        name: "index"
+        name: "index",
+        data() {
+            return {
+                tags: [
+                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png' },
+                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png' },
+                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1' },
+                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png' },
+                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png' }
+                ]
+            };
+        }
     }
 </script>
 
@@ -37,6 +50,7 @@
     }
 
     .box-card {
-        width: 480px;
+        width: 300px;
+        height: 150px;
     }
 </style>
