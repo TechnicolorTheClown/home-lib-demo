@@ -12,3 +12,5 @@ http://element-cn.eleme.io/#/zh-CN/component/card
 GitHub地址：https://github.com/d2-projects/d2-admin
 
 预览地址：https://d2-projects.github.io/d2-admin/#/demo/element/others-card
+
+前端文档：https://d2-projects.github.io/d2-admin-doc/zh/sys-components/container.html#%E5%8F%82%E6%95%B0
