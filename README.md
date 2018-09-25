@@ -36,3 +36,8 @@ npm run e2e
 
 # run all tests
 npm test
+
+
+### 富文本编辑器组件
+
+cnpm install -save quill
