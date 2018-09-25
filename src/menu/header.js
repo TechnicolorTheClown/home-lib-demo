@@ -2,12 +2,18 @@
 export default [
         { path: '/index', title: '首页', icon: 'globe' },
         { path: '/bookmarks', title: '书签', icon: 'star' },
+        { path: '/page3', title: '常用网站', icon: 'globe' },
         {
             title: '网站导航',
             icon: 'send',
             children: [
-                { path: '/page3', title: '常用网站', icon: 'map'  },
-                { path: '/libraryWebsite', title: '网站库', icon: 'life-saver' },
+                { path: '/libraryWebsite', title: '网站库', icon: 'life-saver' }
+            ]
+        },
+        {
+            title: '工具',
+            icon: 'gear',
+            children: [
                 { path: '/page1', title: '右键菜单' , icon: 'key'},
                 { path: `/editor-quill`, title: '富文本编辑器', icon: 'pencil-square-o (edit, edit)' },
                 { path: `/editor-simpleMDE`, title: 'markdown编辑器', icon: 'font' }
