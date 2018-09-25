@@ -14,3 +14,33 @@ GitHub地址：https://github.com/d2-projects/d2-admin
 预览地址：https://d2-projects.github.io/d2-admin/#/demo/element/others-card
 
 前端文档：https://d2-projects.github.io/d2-admin-doc/zh/sys-components/container.html#%E5%8F%82%E6%95%B0
+
+
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run unit tests
+npm run unit
+
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
+
+
+### 富文本编辑器组件
+
+cnpm install -save quill
+
+### markdown编辑器组件
+cnpm install --save simplemde 
