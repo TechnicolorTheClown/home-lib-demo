@@ -8,7 +8,9 @@ export default [
             children: [
                 { path: '/page3', title: '常用网站', icon: 'map'  },
                 { path: '/libraryWebsite', title: '网站库', icon: 'life-saver' },
-                { path: '/page1', title: '右键菜单' , icon: 'key'}
+                { path: '/page1', title: '右键菜单' , icon: 'key'},
+                { path: `/editor-quill`, title: '富文本编辑器', icon: 'pencil-square-o (edit, edit)' },
+                { path: `/editor-simpleMDE`, title: 'markdown编辑器', icon: 'font' }
             ]
         }
    /*{ path: '/home', title: '我的空间', icon: 'folder-o' },

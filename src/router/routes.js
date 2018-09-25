@@ -53,6 +53,18 @@ const frameIn = [
             name: 'libraryWebsite',
             component: () => import('@/pages/libraryWebsite'),
             meta: { meta, title: '网站库' }
+        },
+        {
+            path: '/editor-quill',
+            name: 'editor-quill',
+            component: () => import('@/pages/editor-quill'),
+            meta: { meta, title: '富文本编辑器' }
+        },
+        {
+            path: '/editor-simpleMDE',
+            name: 'editor-simpleMDE',
+            component: () => import('@/pages/editor-simpleMDE'),
+            meta: { meta, title: 'markdown编辑器' }
         }
     ]
   }
