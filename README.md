@@ -41,3 +41,6 @@ npm test
 ### 富文本编辑器组件
 
 cnpm install -save quill
+
+### markdown编辑器组件
+cnpm install --save simplemde 
