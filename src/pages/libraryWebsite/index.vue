@@ -1,5 +1,7 @@
 <template>
-    <d2-container-frame src="https://baidu.com"/>
+    <d2-container  type="ghost" >
+        123465
+    </d2-container>
 </template>
 
 <script>

@@ -9,20 +9,20 @@ const meta = { requiresAuth: true }
 const frameIn = [
   {
     path: '/',
-    redirect: { name: 'home' },
+    redirect: { name: 'index' },
     component: layoutHeaderAside,
     children: [
       {
-        path: 'home',
-        name: 'home',
+        path: 'index',
+        name: 'index',
         meta,
-        component: () => import('@/pages/home')
+        component: () => import('@/pages/index')
       },
       {
         path: '/page1',
         name: 'page1',
         component: () => import('@/pages/page1'),
-        meta: { meta, title: '页面 1' }
+        meta: { meta, title: '右键菜单' }
       },
       {
         path: '/page2',
@@ -34,25 +34,25 @@ const frameIn = [
         path: '/page3',
         name: 'page3',
         component: () => import('@/pages/page3'),
-        meta: { meta, title: '页面 3' }
+        meta: { meta, title: '常用网站' }
       },
-        {
-            path: '/page-demo',
-            name: 'page-demo',
-            component: () => import('@/pages/page-demo'),
-            meta: { meta, title: '测试' }
-        },
         {
             path: '/index',
             name: 'index',
             component: () => import('@/pages/index'),
-            meta: { meta, title: '主页' }
+            meta: { meta, title: '首页' }
         },
         {
             path: '/bookmarks',
             name: 'bookmarks',
             component: () => import('@/pages/bookmarks'),
             meta: { meta, title: '书签' }
+        },
+        {
+            path: '/libraryWebsite',
+            name: 'libraryWebsite',
+            component: () => import('@/pages/libraryWebsite'),
+            meta: { meta, title: '网站库' }
         }
     ]
   }

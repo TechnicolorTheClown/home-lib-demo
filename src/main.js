@@ -11,6 +11,10 @@ import '@/mock'
 import i18n from './i18n'
 // 核心插件
 import d2Admin from '@/plugin/d2admin'
+// [ 可选插件组件 ] 右键菜单
+
+import contentmenu from 'v-contextmenu'
+import 'v-contextmenu/dist/index.css'
 
 // [ 可选插件组件 ]D2-Crud
 import D2Crud from '@d2-projects/d2-crud'
@@ -29,7 +33,7 @@ Vue.use(ElementUI);
 
 // 核心插件
 Vue.use(d2Admin)
-
+Vue.use(contentmenu)
 // 可选插件组件
 Vue.use(D2Crud)
 
