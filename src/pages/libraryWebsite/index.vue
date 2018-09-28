@@ -7,6 +7,7 @@
                     class="el-menu-vertical-demo"
                     @open="handleOpen"
                     @close="handleClose"
+
                      style="background:#000000;opacity:0.5; text-color:#B8860B;"   >
 
                 <div   v-for="nav in navigation"   >
