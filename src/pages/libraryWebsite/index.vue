@@ -3,95 +3,28 @@
 
         <el-col :span="12">
             <el-menu
-                    default-active="2"
+                     default-active="2"
                     class="el-menu-vertical-demo"
                     @open="handleOpen"
                     @close="handleClose"
-                    background-color="#A632E7"
-                    text-color="#fff"
-                    active-text-color="#ffd04b">
-                <el-submenu index="1" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-location"></i>
-                        <span >导航一</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="1-1" >选项1</el-menu-item>
-                        <el-menu-item index="1-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
+                     style="background:#000000;opacity:0.5; text-color:#B8860B;"   >
 
-                <el-submenu index="2" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-menu"></i>
-                        <span>导航二</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="2-1">选项1</el-menu-item>
-                        <el-menu-item index="2-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-submenu index="3" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span>导航三</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="3-1">选项1</el-menu-item>
-                        <el-menu-item index="3-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-submenu index="4" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span>导航四</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="4-1">选项1</el-menu-item>
-                        <el-menu-item index="4-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="5" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span>导航五</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="5-1">选项1</el-menu-item>
-                        <el-menu-item index="5-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="6" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span>导航六</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="6-1">选项1</el-menu-item>
-                        <el-menu-item index="6-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-submenu index="7" class="el-menu-submenu">
-                    <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span>导航七</span>
-                    </template>
-                    <el-menu-item-group>
-                        <el-menu-item index="7-1">选项1</el-menu-item>
-                        <el-menu-item index="7-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-                <el-menu-item index="8">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">导航八</span>
-                </el-menu-item>
+                <div   v-for="nav in navigation"   >
+                    <el-submenu :index="nav.navInt" class="el-menu-submenu">
+                        <template slot="title">
+                            <i :class="nav.navIcon"></i>
+                            <span >{{nav.navName}}</span>
+                        </template>
+                        <el-menu-item-group style="background:#000000;opacity:0.8;text-color:#B8860B;" >
+                            <el-menu-item :index="nav.navInt+'-1'" ><span color="red">选项1</span></el-menu-item>
+                            <el-menu-item :index="nav.navInt+'-2'" ><span color="red">选项3</span></el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                </div>
             </el-menu>
         </el-col>
         <v-contextmenu ref="contextmenu">
-            <v-contextmenu-item @click="handleClick" style="color: blue">编辑</v-contextmenu-item>
-            <v-contextmenu-item @click="handleClick" style="color: red">删除</v-contextmenu-item>
+            <v-contextmenu-item @click="handleClick" style="color: blue">保存书签</v-contextmenu-item>
         </v-contextmenu>
 
         <v-contextmenu ref="contextmenuAdd">
@@ -112,12 +45,6 @@
                 </a><br/>
                 <div style="height: 10px;"></div>
                 <span style="align-content: center">{{tag.name}}</span>
-            </el-col>
-
-            <!--新增-->
-            <el-col closable type="t_blank" span="6" style="margin-top:40px;width:12%;text-align:center;" v-contextmenu:contextmenuAdd >
-                <el-button type="primary" shadow="hover" class="elButton"  icon="el-icon-circle-plus" @click="addClick" >
-                </el-button>
             </el-col>
 
         </el-row>
@@ -150,75 +77,17 @@
                     { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
                     { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
                     { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" },
-                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" },
-                    { name: '百度糯米', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/9483.png?1',target:"_parent",href:"https://www.baidu.com/link?url=hOjteCSu5fZWlQeMDEsArEHxHOESQ75rUpDec5dtdxq&wd=&eqid=ad8f89d60008c100000000045ba777eb" },
-                    { name: '百度网盘', imgsrc: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/7656.png',target:"_top",href:"https://www.baidu.com/link?url=wddEsVY5pxTSqv2ufgh9GHapTkikUmGahtRmKQsQPvy&wd=&eqid=b2ee31a90007c4b8000000045ba77805" },
-                    { name: '斗鱼', imgsrc: 'https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/icon/200001.png',target:"framename",href:"https://www.douyu.com/" }
+                    { name: '有道翻译', imgsrc: 'https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/icon/10603.png',target:"_self",href:"http://fanyi.youdao.com/" }
+                ],
+                navigation: [
+                   /* { navName: '娱乐',navInt: '1', subnavName: '视频',subnavInt:"1-1",navigationId:"100"},*/
+                    { navName: '导航一',navInt: '1',navigationId:"101",navIcon:'el-icon-location'},
+                    { navName: '导航二',navInt: '2',navigationId:"102",navIcon:'el-icon-location'},
+                    { navName: '导航三',navInt: '3',navigationId:"103",navIcon:'el-icon-setting'},
+                    { navName: '导航四',navInt: '4',navigationId:"104",navIcon:'el-icon-location'},
+                    { navName: '导航五',navInt: '5',navigationId:"105",navIcon:'el-icon-setting'},
+                    { navName: '导航六',navInt: '6',navigationId:"106",navIcon:'el-icon-location'},
+                    { navName: '导航七',navInt: '7',navigationId:"107",navIcon:'el-icon-setting'}
                 ]
             }
         },
