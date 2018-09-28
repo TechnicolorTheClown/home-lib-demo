@@ -105,7 +105,7 @@
 
 <style scoped>
     .el-menu-vertical-demo{
-        width: 12%;
+        width: 14%;
         position:absolute;
     }
     .el-menu-submenu{
