@@ -2,12 +2,7 @@
     <d2-container  type="ghost">
 
         <el-col :span="12">
-            <el-menu
-                     default-active="2"
-                    class="el-menu-vertical-demo"
-                    @open="handleOpen"
-                    @close="handleClose"
-
+            <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                      style="background:#000000;opacity:0.5; text-color:#B8860B;"   >
 
                 <div   v-for="nav in navigation"   >
@@ -22,6 +17,7 @@
                         </el-menu-item-group>
                     </el-submenu>
                 </div>
+
             </el-menu>
         </el-col>
         <v-contextmenu ref="contextmenu">
